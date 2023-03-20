@@ -20,6 +20,8 @@ Route::get('/', function () {
 
 Route::resource('products', ProductController::class);
 Route::resource('orders', OrderController::class);
+// Route::post('/orders/{orderId}/add-items',  [OrderController::class,'addToOrder']);
+
 
 Auth::routes();
 

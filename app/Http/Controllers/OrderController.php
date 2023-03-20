@@ -107,4 +107,15 @@ class OrderController extends Controller
         return redirect()->route('orders.index')
             ->with('success', 'Order deleted successfully');
     }
+
+    public function addToOrder(Request $request, $orderId) {
+        $order = Order::findOrFail($orderId);
+        $items = $request->input('items');
+
+        foreach ($items as $item) {
+            $order->items()->attach($item['id'], ['quantity' => $item['quantity']]);
+        }
+
+        return redirect()->back()->with('success', 'Items added to order successfully!');
+    }
 }
