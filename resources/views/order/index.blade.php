@@ -18,7 +18,7 @@
 
                              <div class="float-right">
                                 <a href="{{ route('orders.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                  {{ __('Open an Order') }}
                                 </a>
                               </div>
                         </div>
@@ -35,7 +35,7 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
+
 										<th>Date Time</th>
 
                                         <th></th>
@@ -45,16 +45,18 @@
                                     @foreach ($orders as $order)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
+
 											<td>{{ $order->date_time }}</td>
 
                                             <td>
                                                 <form action="{{ route('orders.destroy',$order->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('orders.show',$order->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
                                                     <a class="btn btn-sm btn-success" href="{{ route('orders.edit',$order->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('orders.add',$order->id) }}"><i class="fa fa-fw fa-edit"></i> Add to cart</a>
                                                 </form>
                                             </td>
                                         </tr>

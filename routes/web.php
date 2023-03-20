@@ -20,8 +20,15 @@ Route::get('/', function () {
 
 Route::resource('products', ProductController::class);
 Route::resource('orders', OrderController::class);
-// Route::post('/orders/{orderId}/add-items',  [OrderController::class,'addToOrder']);
 
+// Route::controller(OrderController::class)->group(function () {
+// Route::get('/orders/{id}', 'add');
+// });
+// Route::prefix('orders')->group(function(){
+//     Route::get('/{id}',[OrderController::class,'add']);
+
+// });
+Route::get('orders/{id}/add', [OrderController::class, 'add'])->name('orders.add');
 
 Auth::routes();
 

@@ -6,7 +6,7 @@
             {{ Form::date('date_time', $order->date_time, ['class' => 'form-control' . ($errors->has('date_time') ? ' is-invalid' : ''), 'placeholder' => 'Date Time']) }}
             {!! $errors->first('date_time', '<div class="invalid-feedback">:message</div>') !!}
         </div>
-        <div class="form-group">
+        {{-- <div class="form-group">
         {{ Form::label('Add a product') }}
         <ul class="list-group">
             <li class="list-group-item">
@@ -21,7 +21,7 @@
                       <button class="btn btn-outline-success" type="button">+</button>
                     <button class="btn btn-outline-danger" type="button">x</button>
                   </div>
-                  {{-- <form method="POST" action="{{ route('order.addToOrder', $order->id) }}">
+                  <form method="POST" action="{{ route('order.addToOrder', $order->id) }}">
                     <div class="form-group">
                         <label for="items">Select items:</label>
                         <select name="items[]" multiple class="form-control">
@@ -31,14 +31,14 @@
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Add items to order</button>
-                </form> --}}
+                </form>
             </li>
 
           </ul>
-        </div>
+        </div> --}}
 
     </div>
     <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+        <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
     </div>
 </div>
