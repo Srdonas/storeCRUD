@@ -15,9 +15,10 @@
                     <div class="card-header">
                         <span class="card-title">{{ __('Update') }} Order</span>
                     </div>
-                    <form method="POST" action="{{ route('orders.toOrder') }}"  role="form" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('orderdetails.store') }}"  role="form" enctype="multipart/form-data">
 
                     <div class="card-body">
+                     {{$orderid}}
                         @foreach ($products as $product)
 
                         @endforeach

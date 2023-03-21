@@ -108,7 +108,6 @@ class OrderController extends Controller
             ->with('success', 'Order deleted successfully');
     }
 
-    public function add($id) {
-        return view('order.add');
-    }
+
+
 }

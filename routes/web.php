@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderDetailsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,7 +29,9 @@ Route::resource('orders', OrderController::class);
 //     Route::get('/{id}',[OrderController::class,'add']);
 
 // });
-Route::get('orders/{id}/add', [OrderController::class, 'add'])->name('orders.add');
+Route::post('orderdetails/toorder', [OrderDetailsController::class, 'toOrder'])->name('orderdetails.store');
+
+Route::get('orderdetails/{id}/add', [OrderDetailsController::class, 'add'])->name('orderdetails.add');
 
 Auth::routes();
 
