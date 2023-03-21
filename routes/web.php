@@ -29,9 +29,10 @@ Route::resource('orders', OrderController::class);
 //     Route::get('/{id}',[OrderController::class,'add']);
 
 // });
-Route::post('orderdetails/toorder', [OrderDetailsController::class, 'toOrder'])->name('orderdetails.store');
-
+// Route::post('orderdetails/toorder', [OrderDetailsController::class, 'toOrder'])->name('orderdetails.store');
 Route::get('orderdetails/{id}/add', [OrderDetailsController::class, 'add'])->name('orderdetails.add');
+Route::resource('orderdetails', OrderDetailsController::class);
+
 
 Auth::routes();
 

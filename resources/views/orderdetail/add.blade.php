@@ -15,20 +15,25 @@
                     <div class="card-header">
                         <span class="card-title">{{ __('Update') }} Order</span>
                     </div>
-                    <form method="POST" action="{{ route('orderdetails.store') }}"  role="form" enctype="multipart/form-data">
+                    @method('POST')
+                    <form action="{{ route('orderdetails.store') }}" method="POST"  role="form" enctype="multipart/form-data">
+                        @csrf
+                        <div class="card-body">
+                            {!! Form::hidden('orderid', $orderid) !!}
 
-                    <div class="card-body">
-                     {{$orderid}}
-                        @foreach ($products as $product)
+                            <select id="product" name="product">
+                                @foreach($products as $product)
+                                    <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                @endforeach
+                            </select>
 
-                        @endforeach
-                        {!! Form::select($product->id, $products, null, ['class' => 'form-control']) !!}
-                        <label for="quantity">Quantity:</label>
-                        <input type="number" id="quantity" name="quantity" min="1" max="100" step="1" value="1">
-                    </div>
-                    <div class="box-footer mt20">
-                        <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
-                    </div>
+                            <label for="quantity">Quantity:</label>
+                            <input type="number" id="quantity" name="quantity" min="1" max="100"
+                                step="1" value="1">
+                        </div>
+                        <div class="box-footer mt20">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
                     </form>
                 </div>
             </div>
