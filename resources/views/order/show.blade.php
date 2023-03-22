@@ -25,17 +25,20 @@
                             {{ $order->date_time }}
                     </div>
                     @foreach ($orderDetails as $orderDetail)
-                        <li><strong>Product name:</strong>
-                            {{ $orderDetail->product->name }}</li>
-                        <li> <strong>Quantity:</strong>
-                            {{ $orderDetail->cuantity }}</li>
-                        <li> <strong>Stock:</strong>
-                            {{ $orderDetail->product->stock }}</li>
-                        <li> <strong>Price:</strong>
-                            {{ $orderDetail->product->price }}</li>
-                            <hr>
+                    <ul class="list-group list-group-horizontal-lg">
+                        <li class="list-group-item">Product name: {{ $orderDetail->product->name }}</li>
+                        <li class="list-group-item">Quantity: {{ $orderDetail->cuantity }}</li>
+                        {{-- <li class="list-group-item">Stock: {{ $orderDetail->product->stock }}</li> --}}
+                        <li class="list-group-item">Price: ${{ $orderDetail->product->price }}</li>
+                        <li class="list-group-item-success">Total: $ {{ $orderDetail->product->price * $orderDetail->cuantity }} MX</li>
+                      </ul>
+                      <hr>
                     @endforeach
-                    <ul>
+                    <li class="list-group-item-warning"> Full cost: $ {{ $total}} MX</li>
+                    {{-- NO ENTENDI MUY BIEN COMO CONVERTIR BLUE DOLLAR A DOLLAR --}}
+                    <li class="list-group-item-warning"> Full cost: $ {{ $total * $dollar}} USA</li>
+                    </ul>
+
                 </div>
             </div>
         </div>

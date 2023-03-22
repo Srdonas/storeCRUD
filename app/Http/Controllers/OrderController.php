@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Http;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Product;
@@ -63,14 +63,29 @@ class OrderController extends Controller
     {
         $order = Order::find($id);
         $orderDetails = OrderDetail::where("order_id",$id)->get();
-        // foreach ($orderDetails as $orderDetail){
-        //     // $price = Product::where("id",$orderDetail->product_id)->get("price");
-        //     $stock=  $orderDetail->product->stock;
-        // }
-        // $prube = OrderDetail::find(1);
-        // $stock=  $prube ->product->stock;
-        // dd($stock);
-        return view('order.show', compact('order','orderDetails'));
+        $total=0;
+
+        foreach ($orderDetails as $orderDetail) {
+            $total+=$orderDetail->product->price * $orderDetail->cuantity;
+        }
+
+        $response = Http::get('https://www.dolarsi.com/api/api.php?type=valoresprincipales');
+        $data = ($response->json());
+        $status = ($response->status());
+        foreach ($data as $casas) {
+
+            foreach ($casas as $casa){
+
+                if($casa ="Dolar Blue" and $casa = "394,00"){
+                    $dollarString= $casa;
+                   }
+            }
+
+
+        }
+       $dollar = (float) $dollarString;
+    // dd($status);
+        return view('order.show', compact('order','orderDetails','total','dollar'));
     }
 
     /**

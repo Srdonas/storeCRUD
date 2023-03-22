@@ -21,9 +21,17 @@ class OrderDetailsController extends Controller
             // dd($req->);
             //  request()->validate(Product::$rules);
             // $req->quantity = $quantity;
+            $existProduct = OrderDetail::where('order_id',$req->orderid)
+            ->where('product_id',$req->product)
+            ->first();
+            // dd($existProduct);
 
-            $stock = Product::where("id",$req->product)->get('stock');
+            if($existProduct != null){
 
+                return redirect()->route('orders.index')
+         ->with('success', 'ERROR: Product is already order');
+
+            }
             $orderdetail = new OrderDetail();
             $orderdetail->order_id = $req->orderid;
             $orderdetail->cuantity = $req->quantity;
@@ -35,10 +43,14 @@ class OrderDetailsController extends Controller
 
             $orderdetail->save();
 
-
-
             return redirect()->route('orders.index')
-            ->with('success', 'Product added successfully.');
+        ->with('success', 'Product added successfully.');
+
+
+
+
+
+
         }
 
 

@@ -16,20 +16,22 @@
                         <span class="card-title">{{ __('Update') }} Order</span>
                     </div>
                     @method('POST')
-                    <form action="{{ route('orderdetails.store') }}" method="POST"  role="form" enctype="multipart/form-data">
+                    <form action="{{ route('orderdetails.store') }}" method="POST" role="form" enctype="multipart/form-data">
                         @csrf
                         <div class="card-body">
                             {!! Form::hidden('orderid', $orderid) !!}
-
+                            <label for="product">Products</label>
                             <select id="product" name="product">
-                                @foreach($products as $product)
+                                @foreach ($products as $product)
                                     <option value="{{ $product->id }}">{{ $product->name }}</option>
                                 @endforeach
                             </select>
-
+                            <br>
                             <label for="quantity">Quantity:</label>
                             <input type="number" id="quantity" name="quantity" min="1" max="100"
                                 step="1" value="1">
+
+
                         </div>
                         <div class="box-footer mt20">
                             <button type="submit" class="btn btn-primary">Save</button>
