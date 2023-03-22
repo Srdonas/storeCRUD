@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ $order->name ?? "{{ __('Show') Order" }}
+    {{ __('Show') }} Order
 @endsection
 
 @section('content')
@@ -19,15 +19,26 @@
                     </div>
 
                     <div class="card-body">
-                        
-                        <div class="form-group">
+
+                        <ul>
                             <strong>Date Time:</strong>
                             {{ $order->date_time }}
-                        </div>
-
                     </div>
+                    @foreach ($orderDetails as $orderDetail)
+                        <li><strong>Product name:</strong>
+                            {{ $orderDetail->product->name }}</li>
+                        <li> <strong>Quantity:</strong>
+                            {{ $orderDetail->cuantity }}</li>
+                        <li> <strong>Stock:</strong>
+                            {{ $orderDetail->product->stock }}</li>
+                        <li> <strong>Price:</strong>
+                            {{ $orderDetail->product->price }}</li>
+                            <hr>
+                    @endforeach
+                    <ul>
                 </div>
             </div>
+        </div>
         </div>
     </section>
 @endsection

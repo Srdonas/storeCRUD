@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Order extends Model
 {
-    
+
     static $rules = [
 		'date_time' => 'required',
     ];
@@ -31,6 +31,11 @@ class Order extends Model
      */
     protected $fillable = ['date_time'];
 
+    /**
+     * Get all of the orderProducts for the Order
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
 
 
 }

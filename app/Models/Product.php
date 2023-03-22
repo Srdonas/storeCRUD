@@ -3,7 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\orderDetails;
 /**
  * Class Product
  *
@@ -19,7 +20,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Product extends Model
 {
-    
+
     static $rules = [
 		'name' => 'required',
 		'price' => 'required',
@@ -35,6 +36,14 @@ class Product extends Model
      */
     protected $fillable = ['name','price','stock'];
 
-
+/**
+ * Get all of the comments for the Product
+ *
+ * @return \Illuminate\Database\Eloquent\Relations\HasMany
+ */
+public function orderDetails(): HasMany
+{
+    return $this->hasMany(orderDetails::class);
+}
 
 }

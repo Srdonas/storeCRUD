@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -61,8 +62,15 @@ class OrderController extends Controller
     public function show($id)
     {
         $order = Order::find($id);
-
-        return view('order.show', compact('order'));
+        $orderDetails = OrderDetail::where("order_id",$id)->get();
+        // foreach ($orderDetails as $orderDetail){
+        //     // $price = Product::where("id",$orderDetail->product_id)->get("price");
+        //     $stock=  $orderDetail->product->stock;
+        // }
+        // $prube = OrderDetail::find(1);
+        // $stock=  $prube ->product->stock;
+        // dd($stock);
+        return view('order.show', compact('order','orderDetails'));
     }
 
     /**

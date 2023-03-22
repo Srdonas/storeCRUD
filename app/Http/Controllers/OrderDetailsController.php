@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Order;
-use App\Models\OrderDetails;
+use App\Models\OrderDetail;
 
 class OrderDetailsController extends Controller
 {
@@ -19,14 +19,28 @@ class OrderDetailsController extends Controller
     }
         public function store(Request $req){
             // dd($req->);
-            $orderdetail = new OrderDetails();
+            //  request()->validate(Product::$rules);
+            // $req->quantity = $quantity;
+
+            $stock = Product::where("id",$req->product)->get('stock');
+
+            $orderdetail = new OrderDetail();
             $orderdetail->order_id = $req->orderid;
             $orderdetail->cuantity = $req->quantity;
             $orderdetail->product_id = $req->product;
 
+            // $newstock = $stock- $req->quantity;
+            // $product->update($newstock);
+
+
             $orderdetail->save();
 
-            return view('home');
+
+
+            return redirect()->route('orders.index')
+            ->with('success', 'Product added successfully.');
         }
+
+
 
 }
